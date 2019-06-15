@@ -24,7 +24,7 @@ ja-IM:
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
         locked: フォロワーを手動で承認する必要があります
         password: 少なくとも8文字は入力してください
-        phrase: あふぅの大文字小文字や閲覧注意に関係なく一致
+        phrase: あふぅの大文字小文字や早苗さんに見つかるかどうかに関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
         setting_aggregate_reblogs: 最近わかるわされたあふぅが新たにわかるわされても表示しません (設定後受信したものにのみ影響)
         setting_default_sensitive: 早苗さんに見つからないメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
@@ -100,7 +100,7 @@ ja-IM:
         setting_display_media_default: 標準
         setting_display_media_hide_all: 非表示
         setting_display_media_show_all: 表示
-        setting_expand_spoilers: 閲覧注意としてマークされたあふぅを常に展開する
+        setting_expand_spoilers: 早苗さんに見つからないようにされたあふぅを常に展開する
         setting_hide_network: 繋がりを隠す
         setting_noindex: 検索エンジンによるインデックスを拒否する
         setting_reduce_motion: アニメーションの動きを減らす
