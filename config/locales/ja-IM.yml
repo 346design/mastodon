@@ -29,11 +29,13 @@ ja-IM:
     server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
+      one: あふぅ
       other: あふぅ
     status_count_before: あふぅした数
     tagline: Follow friends and discover new ones
     terms: 利用規約
     user_count_after:
+      one: 人
       other: 人
     user_count_before: プロデューサー数
     what_is_mastodon: Mastodon とは？
@@ -41,6 +43,7 @@ ja-IM:
     choices_html: "%{name} によるおすすめ:"
     follow: フォロー
     followers:
+      one: フォロワー
       other: フォロワー
     following: フォロー中
     joined: "%{date} に登録"
@@ -55,6 +58,7 @@ ja-IM:
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
+      one: あふぅ
       other: あふぅ
     posts_tab_heading: あふぅ
     posts_with_replies: あふぅとReあふぅ
@@ -302,6 +306,7 @@ ja-IM:
         suspend: 停止中
       show:
         affected_accounts:
+          one: データベース中の1個のアカウントに影響します
           other: データベース中の%{count}個のアカウントに影響します
         retroactive:
           silence: このドメインの既存の影響するアカウントのサイレンスを戻す
@@ -325,6 +330,7 @@ ja-IM:
     instances:
       delivery_available: 配送可能
       known_accounts:
+        one: 既知のアカウント数 1
         other: 既知のアカウント数 %{count}
       moderation:
         all: すべて
@@ -594,6 +600,7 @@ ja-IM:
     explore_mastodon: "%{title}を探索"
     how_to_enable: あなたは社員名簿への掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
+      one: "1 人"
       other: "%{count} 人"
   errors:
     '403': このページを表示する権限がありません。
@@ -719,6 +726,7 @@ ja-IM:
     generate: 作成
     invited_by: '次の人に招待されました:'
     max_uses:
+      one: "1"
       other: "%{count}"
     max_uses_prompt: 無制限
     prompt: リンクを生成・共有してこのサーバーへの新規登録を受け付けることができます
@@ -746,8 +754,10 @@ ja-IM:
       body: '最後のログイン（%{since}）からの出来事:'
       mention: "%{name} さんがあなたにReあふぅしました:"
       new_followers_summary:
+        one: また、離れている間に1 人の新たなフォロワーを獲得しました！
         other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
       subject:
+        one: "新しい1件の通知 \U0001F418"
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
@@ -906,12 +916,15 @@ ja-IM:
     attached:
       description: '添付: %{attached}'
       image:
+        one: "1 枚の画像"
         other: "%{count} 枚の画像"
       video:
+        one: "1 本の動画"
         other: "%{count} 本の動画"
     boosted_from_html: "%{acct_link} からわかられました"
     content_warning: '閲覧注意: %{warning}'
     disallowed_hashtags:
+      one: '許可されていないハッシュタグが含まれています: %{tags}'
       other: '許可されていないハッシュタグが含まれています: %{tags}'
     language_detection: 自動検出
     open_in_web: Webで開く
@@ -923,6 +936,7 @@ ja-IM:
       reblog: わかるわを固定することはできません
     poll:
       total_votes:
+        one: "1票"
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
