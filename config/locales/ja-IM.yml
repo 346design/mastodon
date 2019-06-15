@@ -10,7 +10,7 @@ ja-IM:
     api: API
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
-    browse_directory: ディレクトリから気になる人を探しましょう
+    browse_directory: 社員名簿から気になる人を探しましょう
     browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
@@ -259,7 +259,7 @@ ja-IM:
       config: 構成
       feature_deletions: アカウント削除
       feature_invites: 招待リンク
-      feature_profile_directory: ディレクトリ
+      feature_profile_directory: 社員名簿
       feature_registrations: 新規登録
       feature_relay: 連合リレー
       features: 機能
@@ -421,7 +421,7 @@ ja-IM:
         title: OpenGraphによるプレビューで早苗さんに見つからないように隠されたメディアも表示する
       profile_directory:
         desc_html: ユーザーが見つかりやすくできるようになります
-        title: ディレクトリを有効にする
+        title: 社員名簿を有効にする
       registrations:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
@@ -487,10 +487,10 @@ ja-IM:
     tags:
       accounts: アカウント
       hidden: 非表示
-      hide: ディレクトリから隠す
+      hide: 社員名簿から隠す
       name: ハッシュタグ
       title: ハッシュタグ
-      unhide: ディレクトリに表示する
+      unhide: 社員名簿に表示する
       visible: 表示
     title: 管理
     warning_presets:
@@ -587,12 +587,12 @@ ja-IM:
     warning_html: 削除が保証されるのはこのサーバー上のコンテンツのみです。他のサーバー等、外部に広く共有されたコンテンツについては痕跡が残ることがあります。また、現在接続できないサーバーや、あなたの更新を受け取らなくなったサーバーに対しては、削除は反映されません。
     warning_title: 共有されたコンテンツについて
   directories:
-    directory: ディレクトリ
-    enabled: あなたはディレクトリに掲載されています。
-    enabled_but_waiting: あなたはディレクトリへの掲載を選択しましたが、掲載に必要な最小フォロワー数 (%{min_followers} 人) を満たしていません。
+    directory: 社員名簿
+    enabled: あなたは社員名簿に掲載されています。
+    enabled_but_waiting: あなたは社員名簿への掲載を選択しましたが、掲載に必要な最小フォロワー数 (%{min_followers} 人) を満たしていません。
     explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: "%{title}を探索"
-    how_to_enable: あなたはディレクトリへの掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
+    how_to_enable: あなたは社員名簿への掲載を選択していません。下記から選択できます。ハッシュタグカラムに掲載するにはプロフィール文にハッシュタグを使用してください。
     people:
       other: "%{count} 人"
   errors:
