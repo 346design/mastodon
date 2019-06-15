@@ -109,11 +109,16 @@ class Compose extends React.PureComponent {
         <div className='drawer__pager'>
           {!isSearchPage && <div className='drawer__inner' onFocus={this.onFocus}>
             <NavigationContainer onClose={this.onBlur} />
+
             <ComposeFormContainer />
+
             <AnnouncementsContainer />
+
             <FavouriteTagsContainer />
+
             <TrendTagsContainer />
-            {multiColumn && mascot && (
+
+            {mascot && (
               <div className='drawer__inner__mastodon'>
                 <img alt='' draggable='false' src={mascot} />
               </div>
