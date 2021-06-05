@@ -2,10 +2,10 @@
 
 const path = require('path');
 const { URL } = require('url');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const OfflinePlugin = require('offline-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { output } = require('./configuration');
 const sharedConfig = require('./shared');
@@ -33,20 +33,10 @@ module.exports = merge(sharedConfig, {
   optimization: {
     minimize: true,
     minimizer: [
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
         parallel: true,
         sourceMap: true,
-
-        uglifyOptions: {
-          compress: {
-            warnings: false,
-          },
-
-          output: {
-            comments: false,
-          },
-        },
       }),
     ],
   },
@@ -64,6 +54,7 @@ module.exports = merge(sharedConfig, {
     }),
     new OfflinePlugin({
       publicPath: output.publicPath, // sw.js must be served from the root to avoid scope issues
+      safeToUseOptionalCaches: true,
       caches: {
         main: [':rest:'],
         additional: [':externals:'],
@@ -96,7 +87,7 @@ module.exports = merge(sharedConfig, {
         '**/*.woff',
       ],
       ServiceWorker: {
-        entry: `imports-loader?ATTACHMENT_HOST=>${encodeURIComponent(JSON.stringify(attachmentHost))}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
+        entry: `imports-loader?additionalCode=${encodeURIComponent(`var ATTACHMENT_HOST=${JSON.stringify(attachmentHost)};`)}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
         cacheName: 'mastodon',
         output: '../assets/sw.js',
         publicPath: '/sw.js',
