@@ -24,7 +24,7 @@ gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
 gem 'blurhash', '~> 0.1'
 
-gem 'active_model_serializers', '~> 0.10'
+gem 'active_model_serializers', '~> 0.10', '>= 0.10.14'
 gem 'addressable', '~> 2.8'
 gem 'bootsnap', '~> 1.13.0', require: false
 gem 'browser'
