@@ -40,11 +40,11 @@ class ActivityPub::Dereferencer
   end
 
   def perform_request(uri, headers: nil)
-    return if invalid_origin?(uri)
+    return if non_matching_uri_hosts?(@permitted_origin, uri)
 
     req = Request.new(:get, uri)
 
-    req.add_headers('Accept' => 'application/activity+json, application/ld+json')
+    req.add_headers('Accept' => 'application/ld+json; profile="https://www.w3.org/ns/activitystreams", application/activity+json')
     req.add_headers(headers) if headers
     req.on_behalf_of(@signature_actor) if @signature_actor
 
@@ -56,14 +56,5 @@ class ActivityPub::Dereferencer
         raise Mastodon::UnexpectedResponseError, res unless response_successful?(res) || response_error_unsalvageable?(res)
       end
     end
-  end
-
-  def invalid_origin?(uri)
-    return true if unsupported_uri_scheme?(uri)
-
-    needle   = Addressable::URI.parse(uri).host
-    haystack = Addressable::URI.parse(@permitted_origin).host
-
-    !haystack.casecmp(needle).zero?
   end
 end

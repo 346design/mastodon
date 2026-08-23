@@ -11,7 +11,22 @@ class StatusFilter
 
   def filtered?
     return false if !account.nil? && account.id == status.account_id
+
     blocked_by_policy? || (account_present? && filtered_status?) || silenced_account?
+  end
+
+  def filter_state_for_quote
+    if !account.nil? && account.id == status.account_id
+      nil
+    elsif blocked_by_policy?
+      'unauthorized'
+    elsif account_present? && blocking_domain?
+      'blocked_domain'
+    elsif account_present? && blocking_account?
+      'blocked_account'
+    elsif account_present? && muting_account?
+      'muted_account'
+    end
   end
 
   private
@@ -37,7 +52,7 @@ class StatusFilter
   end
 
   def silenced_account?
-    !account&.silenced? && status_account_silenced? && !account_following_status_account?
+    status_account_silenced? && !account_following_status_account?
   end
 
   def status_account_silenced?

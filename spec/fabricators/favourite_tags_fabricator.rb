@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Fabricator(:favourite_tag) do
   account
-  tag
+  name 'test'
   visibility 0
   order 0
 end

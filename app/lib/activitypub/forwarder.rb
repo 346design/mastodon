@@ -12,7 +12,7 @@ class ActivityPub::Forwarder
   end
 
   def forward!
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
+    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes, limit: 1_000) do |inbox_url|
       [payload, signature_account_id, inbox_url]
     end
   end
@@ -27,19 +27,25 @@ class ActivityPub::Forwarder
     @reblogged_by_account_ids ||= @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
   end
 
+  def quoted_by_account_ids
+    @quoted_by_account_ids ||= @status.quotes.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
+  end
+
+  def shared_by_account_ids
+    reblogged_by_account_ids.concat(quoted_by_account_ids)
+  end
+
   def signature_account_id
-    @signature_account_id ||= begin
-      if in_reply_to_local?
-        in_reply_to.account_id
-      else
-        reblogged_by_account_ids.first
-      end
-    end
+    @signature_account_id ||= if in_reply_to_local?
+                                in_reply_to.account_id
+                              else
+                                shared_by_account_ids.first
+                              end
   end
 
   def inboxes
     @inboxes ||= begin
-      arr  = inboxes_for_followers_of_reblogged_by_accounts
+      arr  = inboxes_for_followers_of_shared_by_accounts
       arr += inboxes_for_followers_of_replied_to_account if in_reply_to_local?
       arr -= [@account.preferred_inbox_url]
       arr.uniq!
@@ -47,8 +53,8 @@ class ActivityPub::Forwarder
     end
   end
 
-  def inboxes_for_followers_of_reblogged_by_accounts
-    Account.where(id: ::Follow.where(target_account_id: reblogged_by_account_ids).select(:account_id)).inboxes
+  def inboxes_for_followers_of_shared_by_accounts
+    Account.where(id: ::Follow.where(target_account_id: shared_by_account_ids).select(:account_id)).inboxes
   end
 
   def inboxes_for_followers_of_replied_to_account

@@ -1,58 +1,88 @@
-@keyframes rotate_anime {
+@use '../mastodon/_variables' as variables;
+@use 'sass:color';
+
+@keyframes rotate-anime {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
+.compose-form .autosuggest-textarea__textarea,
+.search__input {
+  &::placeholder {
+    color: variables.$dark-text-color;
+  }
+}
+
+// compose-form系は中身分のサイズで固定し、余ったスペースをお気に入りタグ
+// (.compose__extra)の上にmargin-top:autoで集約することで下詰めを実現。
+// 高さが足りない時はお気に入りタグだけがshrinkして内部スクロールに切り替わる。
+.compose-panel {
+  .compose-form {
+    flex: 0 0 auto;
+  }
+
+  .compose-form__highlightable {
+    flex-shrink: 0;
+  }
+}
+
 .compose__extra {
-  background: $ui-base-color;
+  background: variables.$ui-base-color;
   position: relative;
+  margin-top: auto;
+  flex: 0 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .compose__extra__header {
   display: flex;
-  align-items: center;
   height: 26px;
   padding: 4px 12px;
-  background: lighten($ui-base-color, 4%);
+  background: color.adjust(variables.$ui-base-color, $lightness: 4%);
   font-size: 16px;
+  align-items: center;
 
-  > i {
-    padding-right: 4px;
+  button {
+    background-color: transparent;
+  }
+
+  &__left {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
   }
 
   &__icon {
     background: transparent;
-    position: absolute;
-    color: $white;
+    color: variables.$darker-text-color;
     border: 0;
     padding: 0;
-    right: 45px;
     text-align: center;
-
-    i {
-      width: 14px;
-    }
-
-    .fa-gear {
-      color: $ui-primary-color;
-    }
-
-    .fa-repeat {
-      color: $ui-primary-color;
-
-      &.animate {
-        animation: rotate_anime 1s ease 0s 1 normal none;
-      }
-    }
+    width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
   }
 
   &__fold__icon {
-    position: absolute;
-    right: 14px;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -64,12 +94,12 @@
       height: 30px;
       display: flex;
       align-items: center;
-      padding: 0px 10px;
+      padding: 0 10px;
       position: relative;
 
-      &:before {
+      &::before {
         counter-increment: index;
-        content: counter(index) ".";
+        content: counter(index) '.';
         font-size: 16px;
         width: 15px;
         padding: 0 5px;
@@ -87,7 +117,7 @@
 
   &__name {
     font-size: 14px;
-    color: $primary-text-color;
+    color: variables.$primary-text-color;
     text-decoration: none;
     width: 200px;
     overflow: hidden;
@@ -95,7 +125,7 @@
     white-space: nowrap;
 
     .fa-hashtag {
-      color: $classic-highlight-color;
+      color: variables.$ui-highlight-color;
       margin-right: 2px;
     }
   }

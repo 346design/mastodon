@@ -1,6 +1,9 @@
 - content_for :header_tags do
   = render_initial_state
-  = javascript_pack_tag 'public', crossorigin: 'anonymous'
+  = vite_typescript_tag 'public.tsx', crossorigin: 'anonymous'
+  = vite_typescript_tag 'admin.tsx', crossorigin: 'anonymous'
+
+- content_for :body_classes, 'admin'
 
 - content_for :content do
   .admin-wrapper
@@ -8,7 +11,7 @@
       .sidebar-wrapper__inner
         .sidebar
           = link_to root_path do
-            = image_pack_tag 'logo_full_imastodon.svg', class: 'logo', alt: 'iMastodon'
+            = image_tag vite_asset_path('images/logo_full_imastodon.svg'), class: 'logo', alt: 'iMastodon'
 
           .sidebar__toggle
             .sidebar__toggle__logo
@@ -16,8 +19,8 @@
                 = logo_as_symbol(:wordmark)
 
             = link_to '#', class: 'sidebar__toggle__icon', 'aria-label': t('navigation.toggle_menu'), 'aria-expanded': 'false' do
-              = fa_icon 'bars'
-              = fa_icon 'times'
+              = material_symbol 'menu'
+              = material_symbol 'close'
 
           = render_navigation
 

@@ -1,13 +1,13 @@
 version: '3'
 services:
   db:
-    image: postgres:12.6-alpine
+    image: postgres:16.3-alpine
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
-      - "POSTGRES_USER=mastodon"
-      - "POSTGRES_PASSWORD=mastodon"
+      - 'POSTGRES_USER=mastodon'
+      - 'POSTGRES_PASSWORD=mastodon'
   redis:
     image: redis:5.0.6-alpine
     ports:
-      - "6379:6379"
+      - '6379:6379'

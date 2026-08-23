@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddOrderToFavouriteTags < ActiveRecord::Migration[5.1]
@@ -7,7 +9,7 @@ class AddOrderToFavouriteTags < ActiveRecord::Migration[5.1]
 
   def up
     safety_assured do
-      add_column_with_default :favourite_tags, :order, :integer, default: 0, allow_null: false
+      add_column :favourite_tags, :order, :integer, default: 0, null: false
     end
   end
 
